@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Heading, Flex, Button, Grid, Icon } from "@/once-ui/components";
+import { Heading, Text, Flex, Button, Grid, Icon } from "@/once-ui/components";
 import Link from "next/link";
 import Validators from "../components/Validators";
 
@@ -64,26 +64,58 @@ export default function Home() {
         as="section"
         fillWidth
         maxWidth={68}
-        direction="column"
-        alignItems="flex-start" // Sola hizalama
+        direction="row"
+        alignItems="center"
         flex={1}
         gap="24"
-        style={{ marginTop: "30px" }}
+        style={{ position: "relative", marginTop: "30px" }}
       >
-        {/* Yazı */}
-        <Heading
-          wrap="balance"
-          variant="display-strong-xs"
+        {/* Logo */}
+        <Flex
+          flex={1}
+          alignItems="center"
+          justifyContent="center"
           style={{
-            textAlign: "left", // Sol hizalama
-            fontFamily: "monospace",
-            color: "#FFFFFF",
-            fontSize: "1.5rem",
-            lineHeight: "2rem",
+            position: "absolute",
+            top: "10%",
+            left: "7%",
+            transform: "translate(-50%, -50%)",
           }}
         >
-          {displayText}
-        </Heading>
+          <img
+            src="/coconode.png"
+            alt="My Logo"
+            style={{
+              width: "300px",
+              height: "auto",
+            }}
+          />
+        </Flex>
+
+        {/* Yazı */}
+        <Flex
+          flex={1}
+          alignItems="flex-start" // Yazının üst kısmını sabitlemek
+          justifyContent="flex-start" // Yazının sol kısmını sabitlemek
+          style={{
+            marginLeft: "25%",
+            textAlign: "left",
+            height: "120px", // Yazının kapladığı alanı sabitlemek için
+          }}
+        >
+          <Heading
+            wrap="balance"
+            variant="display-strong-xs"
+            style={{
+              fontFamily: "monospace",
+              color: "#FFFFFF",
+              fontSize: "1.5rem",
+              lineHeight: "2rem",
+            }}
+          >
+            {displayText}
+          </Heading>
+        </Flex>
       </Flex>
 
       {/* Validators bileşenini ekleme */}
@@ -112,8 +144,16 @@ export default function Home() {
             <Link target="_blank" style={{ padding: "var(--responsive-space-l)" }} key={link.href} href={link.href}>
               <Flex fillWidth paddingY="8" gap="8" direction="column">
                 <Flex fillWidth gap="12" alignItems="center">
+                  <Text variant="body-strong-m" onBackground="neutral-strong">
+                    {link.title}
+                  </Text>
                   <Icon size="s" name="arrowUpRight" />
                 </Flex>
+                {link.description && (
+                  <Text variant="body-default-s" onBackground="neutral-weak">
+                    {link.description}
+                  </Text>
+                )}
               </Flex>
             </Link>
           ))}
