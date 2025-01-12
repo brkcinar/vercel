@@ -40,7 +40,7 @@ export default function Home() {
       alignItems="center"
       flex={1}
       style={{
-        background: 'url(/background.jpg)',
+        background: "url(/background.jpg)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
@@ -59,25 +59,26 @@ export default function Home() {
         </Button>
       </Flex>
 
-      {/* Logo ve Yazı */}
+      {/* Ana içerik */}
       <Flex
         as="section"
         fillWidth
         maxWidth={68}
-        direction="column"
+        direction="row"
         alignItems="center"
         flex={1}
         gap="24"
-        style={{ position: "relative", height: "300px" }} // Sabit bir yükseklik ayarlandı
+        style={{ position: "relative", marginTop: "30px" }}
       >
         {/* Logo */}
         <Flex
+          flex={1}
           alignItems="center"
           justifyContent="center"
           style={{
             position: "absolute",
-            top: "10%", // Yukarı taşıma
-            left: "7%", // Daha sola taşıma
+            top: "10%",
+            left: "7%",
             transform: "translate(-50%, -50%)",
           }}
         >
@@ -85,7 +86,7 @@ export default function Home() {
             src="/coconode.png"
             alt="My Logo"
             style={{
-              width: "300px", // Eski boyutuna döndürüldü
+              width: "300px", // Eski boyut
               height: "auto",
             }}
           />
@@ -93,9 +94,14 @@ export default function Home() {
 
         {/* Yazı */}
         <Flex
+          flex={1}
           alignItems="center"
           justifyContent="center"
-          style={{ textAlign: "center", marginTop: "120px" }} // Yazı sabit kalacak şekilde ayarlandı
+          style={{
+            marginLeft: "25%",
+            textAlign: "center",
+            height: "120px", // Yazının kapladığı alanı sabitlemek için
+          }}
         >
           <Heading
             wrap="balance"
