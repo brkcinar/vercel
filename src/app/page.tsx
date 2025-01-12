@@ -12,42 +12,35 @@ export default function Home() {
     { href: "http://www.hibunode.com/", title: "Introductions", description: "" },
   ];
 
-  const fullText =
-    "Blockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation. As a professional validator in this sector, I take pride in ensuring the reliability of networks and contributing to the growth of the ecosystem.";
-  const [displayLines, setDisplayLines] = useState([""]); // Her bir satır için bir dizi
+  const fullText = [
+    "Blockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation.",
+    "As a professional validator in this sector, I take pride in ensuring the reliability of networks",
+    "and contributing to the growth of the ecosystem."
+  ]; // Satır satır bölündü
+
+  const [currentLine, setCurrentLine] = useState(0); // Hangi satırda olduğumuzu takip ediyoruz
+  const [displayText, setDisplayText] = useState(""); // Geçerli yazılan metin
 
   useEffect(() => {
-    let index = 0;
-    let currentLine = "";
+    if (currentLine < fullText.length) {
+      let index = 0;
 
-    const interval = setInterval(() => {
-      if (index < fullText.length) {
-        const char = fullText[index];
-        currentLine += char;
-
-        if (char === " " || char === ".") {
-          // Eğer karakter boşluk veya nokta ise yeni bir satır kontrolü
-          setDisplayLines((prevLines) => {
-            const newLines = [...prevLines];
-            newLines[newLines.length - 1] = currentLine; // Mevcut satırı güncelle
-            return newLines;
-          });
+      const interval = setInterval(() => {
+        if (index < fullText[currentLine].length) {
+          setDisplayText((prev) => prev + fullText[currentLine][index]);
+          index++;
+        } else {
+          clearInterval(interval);
+          setTimeout(() => {
+            setCurrentLine((prev) => prev + 1); // Bir sonraki satıra geç
+            setDisplayText(""); // Yeni satır için temizle
+          }, 1000); // Satır tamamlandıktan sonra kısa bir duraklama
         }
+      }, 50);
 
-        if (currentLine.length > 50 && char === " ") {
-          // Eğer bir satır uzunluğu çok uzadıysa yeni bir satır başlat
-          setDisplayLines((prevLines) => [...prevLines, ""]);
-          currentLine = "";
-        }
-
-        index++;
-      } else {
-        clearInterval(interval); // Yazı tamamlandığında durdur
-      }
-    }, 30);
-
-    return () => clearInterval(interval);
-  }, []);
+      return () => clearInterval(interval);
+    }
+  }, [currentLine]);
 
   return (
     <Flex
@@ -82,7 +75,7 @@ export default function Home() {
         as="section"
         fillWidth
         maxWidth={68}
-        direction="row"
+        direction="column"
         alignItems="center"
         flex={1}
         gap="24"
@@ -90,7 +83,6 @@ export default function Home() {
       >
         {/* Logo */}
         <Flex
-          flex={1}
           alignItems="center"
           justifyContent="center"
           style={{
@@ -110,15 +102,12 @@ export default function Home() {
           />
         </Flex>
 
-        {/* Yazı */}
+        {/* Yazılar */}
         <Flex
-          flex={1}
           alignItems="flex-start"
           justifyContent="center"
           style={{
-            marginLeft: "25%",
             textAlign: "left", // Sol hizalama
-            height: "auto",
           }}
         >
           <Heading
@@ -131,9 +120,10 @@ export default function Home() {
               lineHeight: "2rem",
             }}
           >
-            {displayLines.map((line, idx) => (
+            {fullText.slice(0, currentLine).map((line, idx) => (
               <div key={idx}>{line}</div>
             ))}
+            {displayText}
           </Heading>
         </Flex>
       </Flex>
@@ -164,6 +154,9 @@ export default function Home() {
             <Link target="_blank" style={{ padding: "var(--responsive-space-l)" }} key={link.href} href={link.href}>
               <Flex fillWidth paddingY="8" gap="8" direction="column">
                 <Flex fillWidth gap="12" alignItems="center">
+                  <Text variant="body-strong-m" onBackground="neutral-strong">
+                    {link.title}
+                  </Text>
                   <Icon size="s" name="arrowUpRight" />
                 </Flex>
               </Flex>
