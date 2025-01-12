@@ -63,7 +63,7 @@ export default function Home() {
       <Flex
         as="section"
         fillWidth
-        maxWidth="70%"
+        maxWidth={68}
         direction="row"
         alignItems="center"
         flex={1}
@@ -95,14 +95,12 @@ export default function Home() {
         {/* Yazı */}
         <Flex
           flex={1}
-          alignItems="center"
-          justifyContent="center"
+          alignItems="flex-start"
+          justifyContent="flex-end" // Sağ hizalama sağlandı
           style={{
             marginLeft: "25%",
-            textAlign: "justify", // Yazının sol ve sağ hizasını sabitler
-            height: "120px", // Yazının kapladığı alanı sabit tutmak için
-            maxWidth: "70%", // Yazı genişliği sınırlandırıldı
-            whiteSpace: "pre-wrap", // Satır sonu ve boşlukları korur
+            textAlign: "right", // Yazının sağa yaslanmasını sağlar
+            height: "120px", // Yazının kapladığı alan sabitlenir
           }}
         >
           <Heading
