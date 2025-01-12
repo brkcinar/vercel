@@ -21,12 +21,12 @@ export default function Home() {
 
     const interval = setInterval(() => {
       if (index < fullText.length) {
-        setDisplayText((prev) => prev + fullText[index]);
+        setDisplayText(fullText.substring(0, index+1));
         index++;
       } else {
         clearInterval(interval); // Stop the animation when complete
       }
-    }, 50); // 50ms per character
+    }, 30); // 30ms per character
 
     return () => clearInterval(interval);
   }, []);
