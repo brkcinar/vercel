@@ -24,7 +24,7 @@ export default function Home() {
         setDisplayText(fullText.substring(0, index + 1));
         index++;
       } else {
-        clearInterval(interval); // Stop animation when text is complete
+        clearInterval(interval);
       }
     }, 30);
 
@@ -78,14 +78,17 @@ export default function Home() {
           style={{
             position: "absolute",
             top: "10%", // Yukarı taşıma
-            left: "5%", // Soldaki ilk çizgiye yakın konum
+            left: "10%", // Sola taşıma
             transform: "translate(-50%, -50%)",
           }}
         >
           <img
             src="/coconode.png"
             alt="My Logo"
-            style={{ width: "200px", height: "auto" }}
+            style={{
+              width: "200px",
+              height: "auto",
+            }}
           />
         </Flex>
 
@@ -94,7 +97,7 @@ export default function Home() {
           flex={1}
           alignItems="center"
           justifyContent="center"
-          style={{ marginLeft: "20%", textAlign: "center" }}
+          style={{ marginLeft: "25%", textAlign: "center" }}
         >
           <Heading
             wrap="balance"
@@ -120,4 +123,38 @@ export default function Home() {
         as="footer"
         fillWidth
         paddingX="l"
-        p
+        paddingY="m"
+        justifyContent="space-between"
+        style={{ marginTop: "24px" }}
+      >
+        <Grid
+          radius="l"
+          border="neutral-medium"
+          borderStyle="solid-1"
+          columns="repeat(3, 1fr)"
+          tabletColumns="1col"
+          mobileColumns="1col"
+          fillWidth
+        >
+          {links.map((link) => (
+            <Link target="_blank" style={{ padding: "var(--responsive-space-l)" }} key={link.href} href={link.href}>
+              <Flex fillWidth paddingY="8" gap="8" direction="column">
+                <Flex fillWidth gap="12" alignItems="center">
+                  <Text variant="body-strong-m" onBackground="neutral-strong">
+                    {link.title}
+                  </Text>
+                  <Icon size="s" name="arrowUpRight" />
+                </Flex>
+                {link.description && (
+                  <Text variant="body-default-s" onBackground="neutral-weak">
+                    {link.description}
+                  </Text>
+                )}
+              </Flex>
+            </Link>
+          ))}
+        </Grid>
+      </Flex>
+    </Flex>
+  );
+}
