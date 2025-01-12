@@ -14,27 +14,17 @@ export default function Home() {
 
   const fullText =
     "Blockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation. As a professional validator in this sector, I take pride in ensuring the reliability of networks and contributing to the growth of the ecosystem.";
-  const [lines, setLines] = useState([]); // Satırları tutacak
-  const maxCharsPerLine = 50; // Bir satırda gösterilecek maksimum karakter sayısı
+  const [displayText, setDisplayText] = useState("");
 
   useEffect(() => {
     let index = 0;
-    let currentLine = "";
 
     const interval = setInterval(() => {
       if (index < fullText.length) {
-        const char = fullText[index];
-        currentLine += char;
-
-        if (currentLine.length >= maxCharsPerLine || index === fullText.length - 1) {
-          // Satır tamamlandığında ekle
-          setLines((prevLines) => [...prevLines, currentLine]);
-          currentLine = ""; // Yeni satır için sıfırla
-        }
-
+        setDisplayText(fullText.substring(0, index + 1));
         index++;
       } else {
-        clearInterval(interval); // Animasyon tamamlandığında durdur
+        clearInterval(interval);
       }
     }, 30);
 
@@ -73,19 +63,47 @@ export default function Home() {
       <Flex
         as="section"
         fillWidth
-        maxWidth="70%"
-        direction="column"
-        alignItems="flex-start" // Soldan başlama
-        gap="12"
-        style={{
-          marginTop: "30px",
-          textAlign: "left",
-        }}
+        maxWidth={68}
+        direction="row"
+        alignItems="center"
+        flex={1}
+        gap="24"
+        style={{ position: "relative", marginTop: "30px" }}
       >
+        {/* Logo */}
+        <Flex
+          flex={1}
+          alignItems="center"
+          justifyContent="center"
+          style={{
+            position: "absolute",
+            top: "10%",
+            left: "7%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <img
+            src="/coconode.png"
+            alt="My Logo"
+            style={{
+              width: "300px",
+              height: "auto",
+            }}
+          />
+        </Flex>
+
         {/* Yazı */}
-        {lines.map((line, index) => (
+        <Flex
+          flex={1}
+          alignItems="flex-start" // Yazının üst kısmını sabitlemek
+          justifyContent="flex-start" // Yazının sol kısmını sabitlemek
+          style={{
+            marginLeft: "25%",
+            textAlign: "left",
+            height: "120px", // Yazının kapladığı alanı sabitlemek için
+          }}
+        >
           <Heading
-            key={index}
             wrap="balance"
             variant="display-strong-xs"
             style={{
@@ -95,9 +113,9 @@ export default function Home() {
               lineHeight: "2rem",
             }}
           >
-            {line}
+            {displayText}
           </Heading>
-        ))}
+        </Flex>
       </Flex>
 
       {/* Validators bileşenini ekleme */}
