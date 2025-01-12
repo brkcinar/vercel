@@ -15,6 +15,7 @@ const testnetProjects = [
     description: 'Pell Test Network',
     reward: 'N/A',
     logo: '/logos/pell.png',
+    stakeLink: 'https://explorer.hibunode.com/pell/staking/pellvaloper17lk7gcgsuht97ca6yqzdlfnpqpcly3qrmxrdsc',
   },
 ];
 
@@ -41,6 +42,25 @@ export default function Validators() {
             <h3>{project.name}</h3>
             <p>{project.description}</p>
             <p style={{ color: 'limegreen' }}>{project.reward}</p>
+            {/* Stake Butonu */}
+            {project.stakeLink && (
+              <a
+                href={project.stakeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-block',
+                  marginTop: '10px',
+                  padding: '10px 20px',
+                  backgroundColor: '#007BFF',
+                  color: '#fff',
+                  textDecoration: 'none',
+                  borderRadius: '5px',
+                }}
+              >
+                Stake
+              </a>
+            )}
           </div>
         ))}
       </div>
