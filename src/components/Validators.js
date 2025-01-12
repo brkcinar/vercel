@@ -5,7 +5,6 @@ const Validators = () => {
     {
       name: "Dymension",
       logo: "/logos/dymension.png",
-      description: "Dymension Network",
       stakeLink: "#",
     },
   ];
@@ -14,19 +13,16 @@ const Validators = () => {
     {
       name: "Pell",
       logo: "/logos/pell.png",
-      description: "Pell Network",
       stakeLink: "https://explorer.hibunode.com/pell/staking/pellvaloper17lk7gcgsuht97ca6yqzdlfnpqpcly3qrmxrdsc",
     },
     {
       name: "Symphony",
       logo: "/logos/symphony.png",
-      description: "Symphony Network",
       stakeLink: "https://explorer.hibunode.com/symphony/staking/symphonyvaloper1ec09t73g02yzkjlmy2vkj22tfxn6mmz449dzg4",
     },
     {
       name: "Warden",
       logo: "/logos/warden.png",
-      description: "Warden Network",
       stakeLink: "https://explorer.hibunode.com/warden/staking/wardenvaloper17sqmgr2fymaknmns9m2z4q4qpze2qth759cgn7",
     },
   ];
