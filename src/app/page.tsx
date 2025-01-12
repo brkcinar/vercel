@@ -40,25 +40,38 @@ export default function Home() {
         backgroundPosition: 'center',
       }}
     >
+      {/* Sol üstte logo ve sağ üstte sosyal medya butonları */}
       <Flex
         as="header"
         fillWidth
-        justifyContent="flex-end"
+        justifyContent="space-between"
         paddingX="l"
         paddingY="s"
         gap="12"
       >
-        <Button href="https://github.com/brkcinar" prefixIcon="github" size="l" variant="tertiary">
-          GitHub
-        </Button>
-        <Button href="https://x.com/brkkcinar" prefixIcon="twitter" size="l" variant="tertiary">
-          Twitter
-        </Button>
-        <Button href="https://www.t.me/brkcinar" prefixIcon="telegram" size="l" variant="tertiary">
-          Telegram
-        </Button>
+        <img
+          src="/coconode.png"
+          alt="My Logo"
+          style={{
+            width: '50px',
+            height: '50px',
+            objectFit: 'contain',
+          }}
+        />
+        <Flex gap="12">
+          <Button href="https://github.com/brkcinar" prefixIcon="github" size="l" variant="tertiary">
+            GitHub
+          </Button>
+          <Button href="https://x.com/brkkcinar" prefixIcon="twitter" size="l" variant="tertiary">
+            Twitter
+          </Button>
+          <Button href="https://www.t.me/brkcinar" prefixIcon="telegram" size="l" variant="tertiary">
+            Telegram
+          </Button>
+        </Flex>
       </Flex>
 
+      {/* Ana yazı */}
       <div style={{ minHeight: '150px', textAlign: 'center', marginBottom: '20px' }}>
         <Heading
           wrap="balance"
@@ -75,6 +88,7 @@ export default function Home() {
         </Heading>
       </div>
 
+      {/* Validators */}
       <Validators />
     </Flex>
   );
