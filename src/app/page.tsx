@@ -78,7 +78,7 @@ export default function Home() {
           style={{
             position: "absolute",
             top: "10%", // Yukarı taşıma
-            left: "10%", // Sola taşıma
+            left: "7%", // Daha sola taşıma
             transform: "translate(-50%, -50%)",
           }}
         >
@@ -86,7 +86,7 @@ export default function Home() {
             src="/coconode.png"
             alt="My Logo"
             style={{
-              width: "200px",
+              width: "300px", // Eski boyutuna döndürüldü
               height: "auto",
             }}
           />
