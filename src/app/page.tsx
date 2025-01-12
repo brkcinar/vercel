@@ -12,35 +12,24 @@ export default function Home() {
     { href: "http://www.hibunode.com/", title: "Introductions", description: "" },
   ];
 
-  const fullText = [
-    "Blockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation.",
-    "As a professional validator in this sector, I take pride in ensuring the reliability of networks",
-    "and contributing to the growth of the ecosystem."
-  ]; // Satır satır bölündü
-
-  const [currentLine, setCurrentLine] = useState(0); // Hangi satırda olduğumuzu takip ediyoruz
-  const [displayText, setDisplayText] = useState(""); // Geçerli yazılan metin
+  const fullText =
+    "Blockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation. As a professional validator in this sector, I take pride in ensuring the reliability of networks and contributing to the growth of the ecosystem.";
+  const [displayText, setDisplayText] = useState("");
 
   useEffect(() => {
-    if (currentLine < fullText.length) {
-      let index = 0;
+    let index = 0;
 
-      const interval = setInterval(() => {
-        if (index < fullText[currentLine].length) {
-          setDisplayText((prev) => prev + fullText[currentLine][index]);
-          index++;
-        } else {
-          clearInterval(interval);
-          setTimeout(() => {
-            setCurrentLine((prev) => prev + 1); // Bir sonraki satıra geç
-            setDisplayText(""); // Yeni satır için temizle
-          }, 1000); // Satır tamamlandıktan sonra kısa bir duraklama
-        }
-      }, 50);
+    const interval = setInterval(() => {
+      if (index < fullText.length) {
+        setDisplayText(fullText.substring(0, index + 1));
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 30);
 
-      return () => clearInterval(interval);
-    }
-  }, [currentLine]);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Flex
@@ -76,56 +65,25 @@ export default function Home() {
         fillWidth
         maxWidth={68}
         direction="column"
-        alignItems="center"
+        alignItems="flex-start" // Sola hizalama
         flex={1}
         gap="24"
-        style={{ position: "relative", marginTop: "30px" }}
+        style={{ marginTop: "30px" }}
       >
-        {/* Logo */}
-        <Flex
-          alignItems="center"
-          justifyContent="center"
-          style={{
-            position: "absolute",
-            top: "10%",
-            left: "7%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <img
-            src="/coconode.png"
-            alt="My Logo"
-            style={{
-              width: "300px",
-              height: "auto",
-            }}
-          />
-        </Flex>
-
-        {/* Yazılar */}
-        <Flex
-          alignItems="flex-start"
-          justifyContent="center"
+        {/* Yazı */}
+        <Heading
+          wrap="balance"
+          variant="display-strong-xs"
           style={{
             textAlign: "left", // Sol hizalama
+            fontFamily: "monospace",
+            color: "#FFFFFF",
+            fontSize: "1.5rem",
+            lineHeight: "2rem",
           }}
         >
-          <Heading
-            wrap="balance"
-            variant="display-strong-xs"
-            style={{
-              fontFamily: "monospace",
-              color: "#FFFFFF",
-              fontSize: "1.5rem",
-              lineHeight: "2rem",
-            }}
-          >
-            {fullText.slice(0, currentLine).map((line, idx) => (
-              <div key={idx}>{line}</div>
-            ))}
-            {displayText}
-          </Heading>
-        </Flex>
+          {displayText}
+        </Heading>
       </Flex>
 
       {/* Validators bileşenini ekleme */}
@@ -154,9 +112,6 @@ export default function Home() {
             <Link target="_blank" style={{ padding: "var(--responsive-space-l)" }} key={link.href} href={link.href}>
               <Flex fillWidth paddingY="8" gap="8" direction="column">
                 <Flex fillWidth gap="12" alignItems="center">
-                  <Text variant="body-strong-m" onBackground="neutral-strong">
-                    {link.title}
-                  </Text>
                   <Icon size="s" name="arrowUpRight" />
                 </Flex>
               </Flex>
