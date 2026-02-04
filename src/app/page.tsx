@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { Heading, Text, Flex, Button, Grid, Icon } from "@/once-ui/components";
 import Link from "next/link";
-import Validators from "../components/Validators";
 
 export default function Home() {
   const links = [
@@ -116,11 +115,6 @@ export default function Home() {
             {displayText}
           </Heading>
         </Flex>
-      </Flex>
-
-      {/* Validators bileşenini ekleme */}
-      <Flex fillWidth direction="column" alignItems="center" style={{ marginTop: "40px", padding: "20px" }}>
-        <Validators />
       </Flex>
 
       <Flex
